@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tarefa 3 - Cavalo Árabe</title>
+    <meta charset="utf-8">
+    <style>
+      .table1{
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 0.9em;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .tr1{
+        border: 2px solid black;
+        margin: 50px 0;
+        padding: 10px 15px;
+      }
+
+      .tr2{
+        border: 2px solid black;
+        margin: 50px 0;
+        background-color: AliceBlue;
+        padding: 10px 15px;
+      }
+
+      .tr3{
+        background-color: AliceBlue;
+        padding: 10px 15px;
+      }
+
+      .nav{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: LightGrey;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a, .dropbtn{
+        display: inline-block;
+        color: Black;
+        text-align: center;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 10;
+      }
+
+      li a:hover, .dropdown:hover .dropbtn{
+        background-color:deepskyblue
+      }
+
+      li.dropdown {
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: deepskyblue;
+        min-width: 150px;
+        box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.4);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+        background-color: LightGrey;
+      }
+
+      .pan_crop {
+          width: 300px;
+          height: 300px;
+          overflow: hidden;
+      }
+
+      .pan img {
+          margin-top: -100px;
+          margin-left: -200px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div> <!-- barra de navegação -->
+      <ul class="nav">
+        <li><a href="http://webdev.zapto.org/danielcosta/tarefa3/"> HOME </a></li>
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn">RAÇAS</a>
+          <div class="dropdown-content">
+            <a href="http://webdev.zapto.org/danielcosta/tarefa3/h_cavalo_arabe.html">Cavalo Árabe</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa3/h_mustang.html">Mustang</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa3/h_paint_horse.html">Paint Horse</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa3/h_puro_sangue_ingles.html">Puro-Sangue Inglês</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa3/h_quarto_de_milha.html">Quarto de Milha</a>
+          </div>
+        </li>
+        <li><a href="mailto:daniel.barbosa21@unifesp.br"> CONTATO </a></li>
+      </ul>
+    </div>
+
+    <div> <!-- imagem/descrição -->
+      <table style="width: 90%" class="table1">
+        <tr>
+          <td style="text-align: center; width: 25%, height: 400px;">
+              <p><b style="text-align:center">CAVALO ÁRABE</b></p>
+              <img src="https://imgsrv2.aramcoexpats.com/lifestyles/special_interest/ar_The-Arabian-EPD_01.jpg"
+                    alt="arabianhorse" width="350">
+              <p>Fonte: <a href="https://imgsrv2.aramcoexpats.com/lifestyles/special_interest/ar_The-Arabian-EPD_01.jpg" target="_blank">Cavalo Árabe</a> (Imagem)</p>
+          </td>
+          <td style="width: 75%; height: 400px;" class="tr1">
+              <p style="text-align:center; font-size:2em"><b>CAVALO ÁRABE</b></p>
+
+              <p style="text-align:justify">
+              "The Arabian or Arab horse (Arabic: الحصان العربي‎ [ ħisˤaːn ʕarabiː], DMG ḥiṣān ʿarabī) is a breed of horse that originated on the Arabian Peninsula.
+               With a distinctive head shape and high tail carriage, the Arabian is one of the most easily recognizable horse breeds in the world.
+               It is also one of the oldest breeds, with archaeological evidence of horses in the Middle East that resemble modern Arabians dating back 4,500 years.
+               Throughout history, Arabian horses have spread around the world by both war and trade, used to improve other breeds by adding speed,
+               refinement, endurance, and strong bone. Today, Arabian bloodlines are found in almost every modern breed of riding horse.
+              </p>
+              <p style="text-align:justify">
+              The Arabian developed in a desert climate and was prized by the nomadic Bedouin people, often being brought inside the family
+              tent for shelter and protection from theft. Selective breeding for traits, including an ability to form a cooperative relationship
+               with humans, created a horse breed that is good-natured, quick to learn, and willing to please.
+               The Arabian also developed the high spirit and alertness needed in a horse used for raiding and war.
+               This combination of willingness and sensitivity requires modern Arabian horse owners to handle their horses with competence and respect.
+              </p>
+              <p style="text-align:justify">
+                The Arabian is a versatile breed. Arabians dominate the discipline of endurance riding, and compete today in many other fields of
+                 equestrian sport. They are one of the top ten most popular horse breeds in the world. They are now found worldwide, including the United States
+                 and Canada, United Kingdom, Australia, continental Europe, South America (especially Brazil), and their land of origin, the Middle East.""
+              </p>
+
+              <p style="text-align:justify">Fonte: <a href="https://en.wikipedia.org/wiki/Thoroughbred" target="_blank">Cavalo Árabe</a> (página em inglês)</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div> <!-- tabela com informações -->
+      <table style="width: 90%" class="table1">
+        <tr>
+          <th colspan="5" class="tr1">Perfil - Cavalo Árabe</th>
+        </tr>
+        <tr>
+          <td style="text-align: center; font-weight: bold" class="tr1">Peso</td>
+          <td style="text-align: center; font-weight: bold" class="tr2">Altura</td>
+          <td style="text-align: center; font-weight: bold" class="tr1">Tipo de Corpo</td>
+          <td style="text-align: center; font-weight: bold" class="tr2">Indicado para</td>
+          <td style="text-align: center; font-weight: bold" class="tr1">Expectativa de Vida</td>
+        </tr>
+        <tr>
+          <td style="text-align: center" class="tr1">360 ~ 455 (kg)</td>
+          <td style="text-align: center" class="tr2">1.42 ~ 1.63 (metros)</td>
+          <td style="text-align: center" class="tr1">Corpo ágil e compacto; Cabeça pequena e com formato de cunha; Pescoço longo e arqueado</td>
+          <td style="text-align: center" class="tr2">Donos ou corredores <span style="color: red">experientes</span></td>
+          <td style="text-align: center" class="tr1"><span style="color: red">25</span> ~ <span style="color: green">30</span> anos</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center" class="tr3">Fonte: <a href="https://www.thesprucepets.com/meet-the-arabian-horse-1886131" target="_blank">Perfil Cavalo Árabe</a> (página em inglês)</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="">
+      <p style="text-align: center; background-color:Gainsboro">Autor: Daniel Barbosa Silva Costa (112185)<br>Email: <a href="mailto:daniel.barbosa21@unifesp.br"> daniel.barbosa21@unifesp.br </a><br></p>
+    </div>
+
+  </body>
+</html>

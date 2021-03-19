@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tarefa 4 - Quarto de Milha</title>
+    <meta charset="utf-8">
+    <style>
+      .table1{
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 0.9em;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .tr1{
+        border: 2px solid black;
+        margin: 50px 0;
+        padding: 10px 15px;
+      }
+
+      .tr2{
+        border: 2px solid black;
+        margin: 50px 0;
+        background-color: AliceBlue;
+        padding: 10px 15px;
+      }
+
+      .tr3{
+        background-color: AliceBlue;
+        padding: 10px 15px;
+      }
+
+      .nav{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: LightGrey;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a, .dropbtn{
+        display: inline-block;
+        color: Black;
+        text-align: center;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 10;
+      }
+
+      li a:hover, .dropdown:hover .dropbtn{
+        background-color:deepskyblue
+      }
+
+      li.dropdown {
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: deepskyblue;
+        min-width: 150px;
+        box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.4);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+        background-color: LightGrey;
+      }
+
+      .pan_crop {
+          width: 300px;
+          height: 300px;
+          overflow: hidden;
+      }
+
+      .pan img {
+          margin-top: -100px;
+          margin-left: -200px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div> <!-- barra de navegação -->
+      <ul class="nav">
+        <li><a href="http://webdev.zapto.org/danielcosta/tarefa4/"> HOME </a></li>
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn">RAÇAS</a>
+          <div class="dropdown-content">
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_cavalo_arabe.html">Cavalo Árabe</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_mustang.html">Mustang</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_paint_horse.html">Paint Horse</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_puro_sangue_ingles.html">Puro-Sangue Inglês</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_quarto_de_milha.html">Quarto de Milha</a>
+          </div>
+        </li>
+        <li><a href="http://webdev.zapto.org/danielcosta/tarefa4/contact.html"> CONTATO </a></li>
+      </ul>
+    </div>
+
+    <div> <!-- imagem/descrição -->
+      <table style="width: 90%" class="table1">
+        <tr>
+          <td style="text-align: center; width: 25%; height: 400px;">
+              <p><b style="text-align:center">QUARTO DE MILHA</b></p>
+              <img src="https://i.pinimg.com/originals/ca/79/33/ca7933b17857174f3503e14bf010057f.jpg"
+                    alt="quarteshorse" width="350">
+              <p>Fonte: <a href="https://i.pinimg.com/originals/ca/79/33/ca7933b17857174f3503e14bf010057f.jpg" target="_blank">Quarto de Milha</a> (Imagem)</p>
+          </td>
+          <td style="width: 75%; height: 400px;" class="tr1">
+              <p style="text-align:center; font-size:2em"><b>QUARTO DE MILHA</b></p>
+
+              <p style="text-align:justify">
+              "The American Quarter Horse, or Quarter Horse, is an American breed of horse that excels at sprinting short distances.
+               Its name is derived from its ability to outrun other horse breeds in races of a quarter mile or less;
+               some have been clocked at speeds up to 55 mph (88.5 km/h). The development of the Quarter Horse traces to the 1600s.
+              </p>
+              <p style="text-align:justify">
+              The American Quarter Horse is the most popular breed in the United States today, and the American Quarter Horse Association is the largest breed
+               registry in the world, with almost 3 million living American Quarter Horses registered in 2014.
+               The American Quarter Horse is well known both as a race horse and for its performance in rodeos, horse shows and as a working ranch horse.
+              </p>
+              <p style="text-align:justify">
+              The compact body of the American Quarter Horse is well-suited for the intricate and quick maneuvers required in reining,
+               cutting, working cow horse, barrel racing, calf roping, and other western riding events, especially those involving live cattle.
+               The American Quarter Horse is also used in English disciplines, driving, show jumping, dressage, hunting, and many other equestrian activities."
+              </p>
+
+              <p style="text-align:justify">Fonte: <a href="https://en.wikipedia.org/wiki/American_Quarter_Horse" target="_blank">Quarto de Milha</a> (página em inglês)</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div> <!-- tabela com informações -->
+      <table style="width: 90%" class="table1">
+        <tr>
+          <th colspan="5" class="tr1">Perfil - Quarto de Milha</th>
+        </tr>
+        <tr>
+          <td style="text-align: center; font-weight: bold" class="tr1">Peso</td>
+          <td style="text-align: center; font-weight: bold" class="tr2">Altura</td>
+          <td style="text-align: center; font-weight: bold" class="tr1">Tipo de Corpo</td>
+          <td style="text-align: center; font-weight: bold" class="tr2">Indicado para</td>
+          <td style="text-align: center; font-weight: bold" class="tr1">Expectativa de Vida</td>
+        </tr>
+        <tr>
+          <td style="text-align: center" class="tr1">430 ~ 545 (kg)</td>
+          <td style="text-align: center" class="tr2">1.42 ~ 1.63 (metros)</td>
+          <td style="text-align: center" class="tr1">Corpo musculoso; Peitoral profundo; Cabeça pequena com testa larga e chata</td>
+          <td style="text-align: center" class="tr2">Trabalho, família e eventos</td>
+          <td style="text-align: center" class="tr1"><span style="color: red">25</span> ~ <span style="color: green">35</span> anos</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center" class="tr3">Fonte: <a href="https://www.thesprucepets.com/meet-the-american-quarter-horse-1886138" target="_blank">Perfil Quarto de Milha</a> (página em inglês)</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="">
+      <p style="text-align: center; background-color:Gainsboro">Autor: Daniel Barbosa Silva Costa (112185)<br>Email: <a href="mailto:daniel.barbosa21@unifesp.br"> daniel.barbosa21@unifesp.br </a><br></p>
+    </div>
+
+  </body>
+</html>

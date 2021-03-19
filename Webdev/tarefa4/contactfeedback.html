@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tarefa 4 - Forms Contato</title>
+    <meta charset="utf-8">
+    <style>
+
+      .nav{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: LightGrey;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a, .dropbtn{
+        display: inline-block;
+        color: Black;
+        text-align: center;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 10;
+      }
+
+      li a:hover, .dropdown:hover .dropbtn{
+        background-color:deepskyblue
+      }
+
+      li.dropdown {
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: deepskyblue;
+        min-width: 150px;
+        box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.4);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+        background-color: LightGrey;
+      }
+
+
+      input[type=text], input[type=email], input[type=number], select, textarea{
+        padding: 12px;
+        border: 1px solid;
+        border-color: rgb(200,200,200);
+        border-radius: 20px;
+        box-sizing: border-box;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        resize: none;
+      }
+
+      input[type=submit]{
+        padding: 12px;
+        border: 2px solid;
+        border-color: rgb(100,100,100);
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        box-sizing: border-box;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        resize: none;
+      }
+
+
+      input[type=text]:focus, input[type=email]:focus, input[type=number]:focus{
+        outline: 0px;
+        box-shadow: 0 0 1pt 1pt deepskyblue;
+      }
+
+
+
+      input[type=submit]:hover{
+        outline: 0px;
+        background-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 1pt 1pt deepskyblue;
+      }
+
+      input[type=submit]:hover:active{
+        outline: 0px;
+        background-color: rgb(100,255,100);
+        box-shadow: 0 0 1pt 1pt deepskyblue;
+      }
+
+      /*Remove inner arrows in type numbers*/
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      /* Firefox */
+      input[type=number] {
+        -moz-appearance: textfield;
+      }
+
+      .form_box {
+        border-radius: 10px;
+        background-color: Gainsboro;
+        margin:20px;
+        padding: 20px;
+        min-width: 720px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div> <!-- barra de navegação -->
+      <ul class="nav">
+        <li><a href="http://webdev.zapto.org/danielcosta/tarefa4/"> HOME </a></li>
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn">RAÇAS</a>
+          <div class="dropdown-content">
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_cavalo_arabe.html">Cavalo Árabe</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_mustang.html">Mustang</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_paint_horse.html">Paint Horse</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_puro_sangue_ingles.html">Puro-Sangue Inglês</a>
+            <a href="http://webdev.zapto.org/danielcosta/tarefa4/h_quarto_de_milha.html">Quarto de Milha</a>
+          </div>
+        </li>
+        <li><a href="http://webdev.zapto.org/danielcosta/tarefa4/contact.html"> CONTATO </a></li>
+      </ul>
+    </div>
+
+    <div class="form_box">
+      <div style="text-align:center; font-size:20px">
+        Formulário enviado (talvez...) !
+      </div>
+    </div>
+
+    <div class="">
+      <p style="text-align: center; background-color:Gainsboro">Autor: Daniel Barbosa Silva Costa (112185)<br>Email: <a href="mailto:daniel.barbosa21@unifesp.br"> daniel.barbosa21@unifesp.br </a><br></p>
+    </div>
+
+  </body>
+</html>
