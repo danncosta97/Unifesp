@@ -1,0 +1,8 @@
+#RPC
+tc qdisc add dev eth0 root tbf rate 10mbit latency 30ms burst 15000
+tc qdisc add dev eth0 handle ffff: ingress
+tc filter add dev eth0 parent ffff: protocol ip prio 50 u32 match ip src 192.168.1.0/24police rate 5mbit burst 150k drop flowid :
+#RPS
+tc qdisc add dev eth0 root tbf rate 50mbit latency 30ms burst 75000
+tc qdisc add dev eth0 handle ffff: ingress
+tc filter add dev eth0 parent ffff: protocol ip prio 50 u32 match ip src 192.168.2.0/24police rate 50mbit burst 1500k drop flowid :1
