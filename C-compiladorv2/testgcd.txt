@@ -1,0 +1,282 @@
+# C- compilation for the intermediate code
+# File: testgcd.txt
+    # -> type int
+        # -> function declaration
+        # input
+        # <- function declaration
+    # <- type int
+
+    # -> type void
+        # -> function declaration
+        # output
+        # <- function declaration
+    # <- type void
+
+    # -> type int
+        # -> function declaration
+        # gcd
+                # -> if
+                # -> if: test expression
+                    # -> arithmetic operator
+                    # -> arithmetic operator: left argument
+                        # -> identifier
+                        # v
+                        # <- identifier
+                    # <- arithmetic operator: left argument
+                    # -> arithmetic operator: right argument
+                        # -> constant
+                        # 0
+                        # <- constant
+                    # <- arithmetic operator: right argument
+                    # relational operator: ==
+                    # <- Operator
+                # <- if: test expression
+                # -> if: if block
+                    # -> return
+                    # -> return: expression
+                        # -> identifier
+                        # u
+                        # <- identifier
+                    # <- return: expression
+                    # <- return
+                # <- if: if block
+                # -> if: else/end block
+                    # -> return
+                    # -> return: expression
+                        # -> function call
+                        # gcd
+                        # -> function call: arguments
+                            # -> identifier
+                            # v
+                            # <- identifier
+                            # -> arithmetic operator
+                            # -> arithmetic operator: left argument
+                                # -> identifier
+                                # u
+                                # <- identifier
+                            # <- arithmetic operator: left argument
+                            # -> arithmetic operator: right argument
+                                # -> arithmetic operator
+                                # -> arithmetic operator: left argument
+                                    # -> arithmetic operator
+                                    # -> arithmetic operator: left argument
+                                        # -> identifier
+                                        # u
+                                        # <- identifier
+                                    # <- arithmetic operator: left argument
+                                    # -> arithmetic operator: right argument
+                                        # -> identifier
+                                        # v
+                                        # <- identifier
+                                    # <- arithmetic operator: right argument
+                                    # arithmetic operator: /
+                                    # <- Operator
+                                # <- arithmetic operator: left argument
+                                # -> arithmetic operator: right argument
+                                    # -> identifier
+                                    # v
+                                    # <- identifier
+                                # <- arithmetic operator: right argument
+                                # arithmetic operator: *
+                                # <- Operator
+                            # <- arithmetic operator: right argument
+                            # arithmetic operator: -
+                            # <- Operator
+                        # <- function call: arguments
+                        # <- function call
+                    # <- return: expression
+                    # <- return
+                # <- if: else/end block
+                # <- if
+        # <- function declaration
+    # <- type int
+
+    # -> type void
+        # -> function declaration
+        # main
+                # -> type int
+                    # -> identifier
+                    # x
+                    # <- identifier
+                # <- type int
+
+                # -> type int
+                    # -> identifier
+                    # y
+                    # <- identifier
+                # <- type int
+
+                # -> assign
+                # -> assign: right argument
+                    # -> function call
+                    # input
+                    # -> function call: arguments
+                    # <- function call: arguments
+                    # <- function call
+                # <- assign: right argument
+                # -> assign: left argument
+                    # -> identifier
+                    # x
+                    # <- identifier
+                # <- assign: left argument
+                # <- assign
+                # -> assign
+                # -> assign: right argument
+                    # -> function call
+                    # input
+                    # -> function call: arguments
+                    # <- function call: arguments
+                    # <- function call
+                # <- assign: right argument
+                # -> assign: left argument
+                    # -> identifier
+                    # y
+                    # <- identifier
+                # <- assign: left argument
+                # <- assign
+                # -> function call
+                # output
+                # -> function call: arguments
+                    # -> function call
+                    # gcd
+                    # -> function call: arguments
+                        # -> identifier
+                        # x
+                        # <- identifier
+                        # -> identifier
+                        # y
+                        # <- identifier
+                    # <- function call: arguments
+                    # <- function call
+                # <- function call: arguments
+                # <- function call
+        # <- function declaration
+    # <- type void
+
+# Fim da execução.
+
+********** Intermediate Code **********
+
+1: (function, gcd, _, _)
+2: (get_param, u, _, _)
+3: (get_param, v, _, _)
+4: (equal, v, 0, t1)
+5: (jump_if_false, t1, L1, _)
+6: (return, u, _, _)
+7: (goto, L2, _, _)
+8: (label, L1, _, _)
+9: (param_list, 2, _, _)
+10: (set_param, v, _, _)
+11: (division, u, v, t2)
+12: (multiplication, t2, v, t3)
+13: (subtraction, u, t3, t4)
+14: (set_param, t4, _, _)
+15: (call, gcd, 2, t5)
+16: (return, t5, _, _)
+17: (label, L2, _, _)
+18: (return, _, _, _)
+19: (function, main, _, _)
+20: (param_list, 0, _, _)
+21: (call, input, 0, t6)
+22: (assign, x, t6, _)
+23: (param_list, 0, _, _)
+24: (call, input, 0, t7)
+25: (assign, y, t7, _)
+26: (param_list, 1, _, _)
+27: (param_list, 2, _, _)
+28: (set_param, x, _, _)
+29: (set_param, y, _, _)
+30: (call, gcd, 2, t8)
+31: (set_param, t8, _, _)
+32: (call, output, 1, t9)
+33: (halt, _, _, _)
+
+########## Assembly ##########
+
+gcd:
+    0:	addi	$sp, $sp, 3
+    1:	mov	$s0, $a0
+    2:	mov	$s1, $a1
+    3:	li	$t0, 0
+    4:	beq	$s1, $t0, L1
+    5:	mov	$v0, $s0
+    6:	jr	$ra
+    7:	j	L2
+.L1	
+    8:	mov	$a0, $s1
+    9:	lw	$s2, 0($sp)
+    10:	div	$t1, $s0, $s2
+    11:	mul	$t2, $t1, $s2
+    12:	sub	$t3, $s0, $t2
+    13:	mov	$a1, $t3
+    14:	sw	$ra, 1($sp)
+    15:	jal	gcd
+    16:	subi	$sp, $sp, 3
+    17:	lw	$ra, 1($sp)
+    18:	mov	$t4, $v0
+    19:	mov	$v0, $t4
+    20:	jr	$ra
+.L2	
+    21:	jr	$ra
+
+main:
+    22:	addi	$sp, $sp, 1
+    23:	hlt	
+    24:	in	$t0
+    25:	sw	$t0, -1($sp)
+    26:	hlt	
+    27:	in	$t1
+    28:	sw	$t1, 0($sp)
+    29:	lw	$s0, -1($sp)
+    30:	mov	$a0, $s0
+    31:	lw	$s1, 0($sp)
+    32:	mov	$a1, $s1
+    33:	jal	gcd
+    34:	mov	$t2, $v0
+    35:	subi	$sp, $sp, 3
+    36:	mov	$a0, $t2
+    37:	out	$a0, 0
+    38:	hlt	
+
+########## Binary ##########
+
+[000] 110000 00000000000000000000010111;  Jump main()
+[001] 000011 00011 00011 0000000000000011 (op: addi)
+[002] 011010 00111 01011 0000000000000000 (op: mov)
+[003] 011010 01000 01100 0000000000000000 (op: mov)
+[004] 101011 00000 10101 0000000000000000 (op: li)
+[005] 011110 01100 10101 0000000000001001 (op: beq)
+[006] 011010 01011 00001 0000000000000000 (op: mov)
+[007] 110010 00000 11111 0000000000000000 (op: jr)
+[008] 110000 00000000000000000000010110 (op: j)
+[009] 011010 01100 00111 0000000000000000 (op: mov)
+[010] 101001 00011 01101 0000000000000000 (op: lw)
+[011] 001100 01011 01101 10110 00000000000 (op: div)
+[012] 001010 10110 01101 10111 00000000000 (op: mul)
+[013] 000110 01011 10111 11000 00000000000 (op: sub)
+[014] 011010 11000 01000 0000000000000000 (op: mov)
+[015] 101000 00011 11111 0000000000000001 (op: sw)
+[016] 110001 00000000000000000000000001 (op: jal)
+[017] 000111 00011 00011 0000000000000011 (op: subi)
+[018] 101001 00011 11111 0000000000000001 (op: lw)
+[019] 011010 00001 11001 0000000000000000 (op: mov)
+[020] 011010 11001 00001 0000000000000000 (op: mov)
+[021] 110010 00000 11111 0000000000000000 (op: jr)
+[022] 110010 00000 11111 0000000000000000 (op: jr)
+[023] 000011 00011 00011 0000000000000001 (op: addi)
+[024] 111111 00000000000000000000000000 (op: hlt)
+[025] 111000 00000 10101 0000000000000000 (op: in)
+[026] 101000 00011 10101 1111111111111111 (op: sw)
+[027] 111111 00000000000000000000000000 (op: hlt)
+[028] 111000 00000 10110 0000000000000000 (op: in)
+[029] 101000 00011 10110 0000000000000000 (op: sw)
+[030] 101001 00011 01011 1111111111111111 (op: lw)
+[031] 011010 01011 00111 0000000000000000 (op: mov)
+[032] 101001 00011 01100 0000000000000000 (op: lw)
+[033] 011010 01100 01000 0000000000000000 (op: mov)
+[034] 110001 00000000000000000000000001 (op: jal)
+[035] 011010 00001 10111 0000000000000000 (op: mov)
+[036] 000111 00011 00011 0000000000000011 (op: subi)
+[037] 011010 10111 00111 0000000000000000 (op: mov)
+[038] 111001 00000 00111 0000000000000000 (op: out)
+[039] 111111 00000000000000000000000000 (op: hlt)
