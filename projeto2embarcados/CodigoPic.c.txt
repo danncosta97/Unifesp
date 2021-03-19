@@ -1,0 +1,111 @@
+// --- Liga??es entre PIC e LCD ---
+sbit LCD_RS at RE2_bit;   // PINO 2 DO PORTD LIGADO AO RS DO DISPLAY
+sbit LCD_EN at RE1_bit;   // PINO 3 DO PORTD LIGADO AO EN DO DISPLAY
+sbit LCD_D7 at RD7_bit;  // PINO 7 DO PORTD LIGADO AO D7 DO DISPLAY
+sbit LCD_D6 at RD6_bit;  // PINO 6 DO PORTD LIGADO AO D6 DO DISPLAY
+sbit LCD_D5 at RD5_bit;  // PINO 5 DO PORTD LIGADO AO D5 DO DISPLAY
+sbit LCD_D4 at RD4_bit;  // PINO 4 DO PORTD LIGADO AO D4 DO DISPLAY
+
+// Selecionando dire??o de fluxo de dados dos pinos utilizados para a comunica??o com display LCD
+sbit LCD_RS_Direction at TRISE2_bit;  // SETA DIRE??O DO FLUXO DE DADOS DO PINO 2 DO PORTD
+sbit LCD_EN_Direction at TRISE1_bit;  // SETA DIRE??O DO FLUXO DE DADOS DO PINO 3 DO PORTD
+sbit LCD_D7_Direction at TRISD7_bit;  // SETA DIRE??O DO FLUXO DE DADOS DO PINO 7 DO PORTD
+sbit LCD_D6_Direction at TRISD6_bit;  // SETA DIRE??O DO FLUXO DE DADOS DO PINO 6 DO PORTD
+sbit LCD_D5_Direction at TRISD5_bit;  // SETA DIRE??O DO FLUXO DE DADOS DO PINO 5 DO PORTD
+sbit LCD_D4_Direction at TRISD4_bit;  // SETA DIRE??O DO FLUXO DE DADOS DO PINO 4 DO PORTD
+
+char temper[15]; //temperatura em string
+unsigned int temp=0; //valor da temperatura já convertido
+int cont=0; //variável para realizar contagem
+int k=0;
+
+void interrupt(){               // Palavra "interrupt" sempre em minuscula.
+    if(INTCON.TMR0IF==1){       // Incrementa somente quando existir o overflow do timer 0.
+       TMR0H = 0xC2 ;
+       TMR0L = 0xF7;
+       INTCON.TMR0IF = 0;       // Limpa o flag de estouro do timer0 para uma nova contagem de tempo.
+       cont++;
+       k=0;
+    }
+}
+
+void main(){
+   int valorAD;
+   ADCON0 = 0b00001011;
+   ADCON1 = 0b11001100;
+   ADCON2 = 0b10111110;
+
+   UART1_Init(9600);  // Utiliza bibliotecas do compilador para configuração o Baud rate.
+
+   PORTA=255;
+   TRISA=255;
+
+   TRISC.RC5=0;
+   TRISC.RC1=0;
+   PORTC.RC1=1;
+   TRISE.RE0=1;
+
+    OSCCON =  0X70;                  // Set internal oscillator to 8MHz
+
+    Lcd_Init();                      // Initialize LCD module
+    Lcd_Cmd(_LCD_CURSOR_OFF);        // cursor off
+    Lcd_Cmd(_LCD_CLEAR);             // clear LCD
+    lcd_out(1, 3, "Temperature:");
+
+   //PORTC.RC5=1;
+
+   //PWM1_Init(5000); //5kHz
+   PWM1_Start();
+
+
+   T0CON.T08BIT=0;
+   T0CON.T0CS=0;
+   T0CON.T0SE=0;
+   T0CON.PSA=0;
+   T0CON.T0PS2=1;
+   T0CON.T0PS1=1;
+   T0CON.T0PS0=0;
+   TMR0H = 0xC2;            // Carrega o valor alto do n?mero 57723.
+   TMR0L = 0xF7;            // Carrega o valor baixo do numero 57723.
+   INTCON.TMR0IE = 1;       // Habilita interrup??o do timer0.
+   INTCON.TMR0IF = 0;       // Apaga flag de estouro do timer0, pois ? fundamental para a sinaliza??o do estouro.
+   T0CON.TMR0ON=1;
+   INTCON.GIE = 1;
+   INTCON.PEIE = 1;
+
+   while(1){  // SELECIONE A VARIAVEL DE CONTROLE (CONTROL) DECLARADA ACIMA.
+
+      PORTC.RC5=1; //resistência
+
+      temp = ADC_Read(2)*0.489; //temp em celsius500/1023)
+      inttostr(temp,temper); //convert temp to string
+      if(cont<0) temper[6]='0'; //byte to control text on arduino
+      else temper[6]='1';
+      temper[14]='k'; //end char 
+
+      UART1_Write_Text(temper); //send temper through UART1
+      Delay_ms(50);
+
+      lcd_out(1,1,"TEMPERATURE="); //show on display
+      lcd_out(1,15, "  ");
+      lcd_out(1,13, Ltrim(temper));
+      lcd_out(1,15, "  ");
+
+      if(temp>35 && cont<10){ //control fan
+        if(cont<0)PWM1_Set_Duty(0);
+        else if (temp<40)PWM1_Set_Duty(511);
+        else (PWM1_Set_Duty(1023));
+      }
+      else{
+        cont=-10; //10 seconds off
+        PWM1_Set_Duty(0);
+      }
+      //buzzer
+      if(temp>40 && cont%2==0){
+        PORTC.RC1=0;
+      }
+      else{
+        PORTC.RC1=1;
+      }
+    }
+}

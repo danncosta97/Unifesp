@@ -1,0 +1,61 @@
+## FIFO ##
+Page size: 4
+Physical memory: 256
+Physical memory page frames: 64
+Virtual memory: 1024
+Logical memory virtual pages: 256
+Page faults: 207
+Referenced (Replaced): 143
+Unreferenced (Replaced): 0
+Modified (Replaced): 34
+Unmodified (Replaced): 109
+Time: 0.0020238 seconds
+## FIFO ##
+Page size: 4
+Physical memory: 256
+Physical memory page frames: 64
+Virtual memory: 1024
+Logical memory virtual pages: 256
+Page faults: 222
+Referenced (Replaced): 158
+Unreferenced (Replaced): 0
+Modified (Replaced): 38
+Unmodified (Replaced): 120
+Time: 0.0019049 seconds
+## FIFO ##
+Page size: 4
+Physical memory: 256
+Physical memory page frames: 64
+Virtual memory: 1024
+Logical memory virtual pages: 256
+Page faults: 203
+Referenced (Replaced): 139
+Unreferenced (Replaced): 0
+Modified (Replaced): 36
+Unmodified (Replaced): 103
+Time: 0.0019936 seconds
+## FIFO ##
+Page size: 4
+Physical memory: 256
+Physical memory page frames: 64
+Virtual memory: 1024
+Logical memory virtual pages: 256
+Page faults: 213
+Referenced (Replaced): 149
+Unreferenced (Replaced): 0
+Modified (Replaced): 34
+Unmodified (Replaced): 115
+Time: 0.0019044 seconds
+
+Average
+Page size: 4.0
+Physical memory: 256.0
+Physical memory page frames: 64.0
+Virtual memory: 1024.0
+Logical memory virtual pages: 256.0
+Page faults: 211.25
+Referenced (Replaced): 147.25
+Unreferenced (Replaced): 0.0
+Modified (Replaced): 35.5
+Unmodified (Replaced): 111.75
+Time: 0.001956675

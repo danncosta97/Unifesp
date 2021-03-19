@@ -1,0 +1,61 @@
+## Least Recently Used (LRU) ##
+Page size: 32
+Physical memory: 128000
+Physical memory page frames: 4000
+Virtual memory: 1024000
+Logical memory virtual pages: 32000
+Page faults: 29152
+Referenced (Replaced): 25152
+Unreferenced (Replaced): 0
+Modified (Replaced): 6312
+Unmodified (Replaced): 18840
+Time: 16.1398173 seconds
+## Least Recently Used (LRU) ##
+Page size: 32
+Physical memory: 128000
+Physical memory page frames: 4000
+Virtual memory: 1024000
+Logical memory virtual pages: 32000
+Page faults: 29201
+Referenced (Replaced): 25201
+Unreferenced (Replaced): 0
+Modified (Replaced): 6261
+Unmodified (Replaced): 18940
+Time: 15.9324246 seconds
+## Least Recently Used (LRU) ##
+Page size: 32
+Physical memory: 128000
+Physical memory page frames: 4000
+Virtual memory: 1024000
+Logical memory virtual pages: 32000
+Page faults: 29152
+Referenced (Replaced): 25152
+Unreferenced (Replaced): 0
+Modified (Replaced): 6247
+Unmodified (Replaced): 18905
+Time: 15.780833 seconds
+## Least Recently Used (LRU) ##
+Page size: 32
+Physical memory: 128000
+Physical memory page frames: 4000
+Virtual memory: 1024000
+Logical memory virtual pages: 32000
+Page faults: 29153
+Referenced (Replaced): 25153
+Unreferenced (Replaced): 0
+Modified (Replaced): 6166
+Unmodified (Replaced): 18987
+Time: 15.7150088 seconds
+
+Average
+Page size: 32.0
+Physical memory: 128000.0
+Physical memory page frames: 4000.0
+Virtual memory: 1024000.0
+Logical memory virtual pages: 32000.0
+Page faults: 29164.5
+Referenced (Replaced): 25164.5
+Unreferenced (Replaced): 0.0
+Modified (Replaced): 6246.5
+Unmodified (Replaced): 18918.0
+Time: 15.892020925

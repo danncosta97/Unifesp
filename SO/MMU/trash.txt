@@ -1,0 +1,156 @@
+## FIFO ##
+Page size: 4
+Physical memory: 256
+Physical memory page frames: 64
+Virtual memory: 1024
+Logical memory virtual pages: 256
+Page faults: 209
+Referenced (Replaced): 145
+Unreferenced (Replaced): 0
+Modified (Replaced): 31
+Unmodified (Replaced): 114
+Time: 0.0019308 seconds
+## FIFO ##
+Page size: 4
+Physical memory: 256
+Physical memory page frames: 64
+Virtual memory: 1024
+Logical memory virtual pages: 256
+Page faults: 209
+Referenced (Replaced): 145
+Unreferenced (Replaced): 0
+Modified (Replaced): 38
+Unmodified (Replaced): 107
+Time: 0.0019948 seconds
+## FIFO ##
+Page size: 4
+Physical memory: 256
+Physical memory page frames: 64
+Virtual memory: 1024
+Logical memory virtual pages: 256
+Page faults: 215
+Referenced (Replaced): 151
+Unreferenced (Replaced): 0
+Modified (Replaced): 35
+Unmodified (Replaced): 116
+Time: 0.0019328 seconds
+## FIFO ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 107
+Referenced (Replaced): 75
+Unreferenced (Replaced): 0
+Modified (Replaced): 23
+Unmodified (Replaced): 52
+Time: 0.2405606 seconds
+## Second Chance (SC) ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 128
+Referenced (Replaced): 127
+Unreferenced (Replaced): 0
+Modified (Replaced): 25
+Unmodified (Replaced): 102
+Time: 0.2083288 seconds
+## Second Chance (SC) ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 128
+Referenced (Replaced): 127
+Unreferenced (Replaced): 0
+Modified (Replaced): 35
+Unmodified (Replaced): 92
+Time: 0.2061679 seconds
+## Second Chance (SC) ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 124
+Referenced (Replaced): 123
+Unreferenced (Replaced): 0
+Modified (Replaced): 36
+Unmodified (Replaced): 87
+Time: 0.2513923 seconds
+## Second Chance (SC) ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 128
+Referenced (Replaced): 127
+Unreferenced (Replaced): 0
+Modified (Replaced): 40
+Unmodified (Replaced): 87
+Time: 0.2683741 seconds
+## Second Chance (SC) ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 127
+Referenced (Replaced): 125
+Unreferenced (Replaced): 0
+Modified (Replaced): 24
+Unmodified (Replaced): 101
+Time: 0.2755553 seconds
+## Second Chance (SC) ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 123
+Referenced (Replaced): 117
+Unreferenced (Replaced): 0
+Modified (Replaced): 33
+Unmodified (Replaced): 84
+Time: 0.2795992 seconds
+## Second Chance (SC) ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 128
+Referenced (Replaced): 127
+Unreferenced (Replaced): 0
+Modified (Replaced): 27
+Unmodified (Replaced): 100
+Time: 0.3914979 seconds
+## Second Chance (SC) ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 127
+Referenced (Replaced): 125
+Unreferenced (Replaced): 0
+Modified (Replaced): 30
+Unmodified (Replaced): 95
+Time: 0.4544754 seconds
+## Second Chance (SC) ##
+Page size: 8
+Physical memory: 256
+Physical memory page frames: 32
+Virtual memory: 1024
+Logical memory virtual pages: 128
+Page faults: 108
+Referenced (Replaced): 76
+Unreferenced (Replaced): 0
+Modified (Replaced): 18
+Unmodified (Replaced): 58
+Time: 0.4515731 seconds

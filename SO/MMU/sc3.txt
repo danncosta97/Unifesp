@@ -1,0 +1,61 @@
+## Second Chance (SC) ##
+Page size: 32
+Physical memory: 256000
+Physical memory page frames: 8000
+Virtual memory: 512000
+Logical memory virtual pages: 16000
+Page faults: 11517
+Referenced (Replaced): 3517
+Unreferenced (Replaced): 0
+Modified (Replaced): 884
+Unmodified (Replaced): 2633
+Time: 14.1102715 seconds
+## Second Chance (SC) ##
+Page size: 32
+Physical memory: 256000
+Physical memory page frames: 8000
+Virtual memory: 512000
+Logical memory virtual pages: 16000
+Page faults: 11517
+Referenced (Replaced): 3517
+Unreferenced (Replaced): 0
+Modified (Replaced): 888
+Unmodified (Replaced): 2629
+Time: 15.6180397 seconds
+## Second Chance (SC) ##
+Page size: 32
+Physical memory: 256000
+Physical memory page frames: 8000
+Virtual memory: 512000
+Logical memory virtual pages: 16000
+Page faults: 11462
+Referenced (Replaced): 3462
+Unreferenced (Replaced): 0
+Modified (Replaced): 885
+Unmodified (Replaced): 2577
+Time: 15.6604832 seconds
+## Second Chance (SC) ##
+Page size: 32
+Physical memory: 256000
+Physical memory page frames: 8000
+Virtual memory: 512000
+Logical memory virtual pages: 16000
+Page faults: 11427
+Referenced (Replaced): 3427
+Unreferenced (Replaced): 0
+Modified (Replaced): 870
+Unmodified (Replaced): 2557
+Time: 15.2013326 seconds
+
+Average
+Page size: 32.0
+Physical memory: 256000.0
+Physical memory page frames: 8000.0
+Virtual memory: 512000.0
+Logical memory virtual pages: 16000.0
+Page faults: 11480.75
+Referenced (Replaced): 3480.75
+Unreferenced (Replaced): 0.0
+Modified (Replaced): 881.75
+Unmodified (Replaced): 2599.0
+Time: 15.14753175
