@@ -1,0 +1,2 @@
+O State lida com o que o objeto é, algo intrínseco ao objeto, e através disso altera seu estado ou não. 
+Já o Strategy lida em como um objeto realiza uma determinada ação.
