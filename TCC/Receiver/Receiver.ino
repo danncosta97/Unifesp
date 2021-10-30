@@ -1,100 +1,164 @@
-// MEGA PORT COM 5
+// MEGA PORT COM 4 (USB DIR)
 #define LDR A0 // A0;
 #define START_STATE 0
 #define DATA_STATE 1
 #define PARITY_STATE 2
 #define COMM_STARTED_STATE 3
 
-//const char frase = "D";
-const int startAndParitySize = 2;
-int fraseSize = 0;
-int parityBit = 0;
-int frasePosition = 0;
+int state = 0;
 
-int state = 0; //1 dados, 2 paridade, 3 finalizado
+int baudDataPosition = 0;
 
-unsigned long startCycle = 0;
-unsigned long clockCycle = 50; // ms
-unsigned long intialDelay = clockCycle + (clockCycle/2); // delay para amostrar no tempo central da bit
+int bitReceived = 0;
 
-
-int baudBitPosition; // excluindo startBit
+int ldrValue = 0;
 
 char charBits = 0;
 
-int delChar = 0; // transmissor provavelmente reiniciando (@see)
+unsigned long startCycle = 0;
+unsigned long clockCycle = 500; // ms
+unsigned long initialDelay = 750; // delay para amostrar no tempo central da bit
 
-int commStarted = 0; // para inserção do delay incial 
+unsigned long millis_in = 0;
+unsigned long millis_out = 0;
 
-int receivedBit = 0;
+unsigned long millis_current = 0;
+unsigned long millis_previous = 0;
 
-long temp1 = 0;
-long temp2 = 0;
+unsigned long outloop = 0;
+unsigned long inloop = 0;
+unsigned long betweenloop = 0;
 
+int start=0;
+
+//-----------------------
+//Port direct A0 -> PORTF[0]
 
 void setup() {
     Serial.begin(9600);
-    
     // led integrado
     pinMode(LED_BUILTIN, OUTPUT);
     digitalWrite(LED_BUILTIN, LOW);
 
-    //fraseSize = strlen(frase);
-    baudBitPosition = 0;
-    startCycle = millis();
+    int state = START_STATE;
 
+    long millis_in = 0;
+    long millis_out = 0;
+
+    long millis_current = 0;
+    long millis_previous = 0;
 }
 
 void loop() {
-    int ldrValue = analogRead(A0);
+    millis_previous = millis();
+    ldrValue = analogRead(LDR);
     
-    if (state == START_STATE && ldrValue < 900) { // bit de início detectado
-        state = DATA_STATE;  // vai para leitura dos dados efetivos (caracter)
-        temp1 = millis();
-        delay(intialDelay);
-    }// "baudBitPosition -1" de startBit
-
-    if (state == COMM_STARTED_STATE) {
+    /*if(ldrValue < 900 && state == START_STATE) {
+        millis_in = millis();
+        delay(clockCycle*0.5);
+        Serial.print('S');
         delay(clockCycle);
-        if (analogRead(A0) < 900) { // temos mais um startbit de baud
-            delay(clockCycle);
-            state = DATA_STATE;
-        } else {
+        state = DATA_STATE;
+    }
+
+    if(state == DATA_STATE) {
+        
+        Serial.print(bitReceived);
+        charBits = charBits | (bitReceived << baudDataPosition);
+        baudDataPosition++;
+        if (baudDataPosition > 7){
+            baudDataPosition = 0;
             state = START_STATE;
-        }
-    }
-
-    if (state == DATA_STATE && baudBitPosition < 8) { // leitura dos 8 bits do caracter
-       
-        receivedBit = (analogRead(A0) > 900) ? 1 : 0;
-        // bitwise
-        charBits = charBits | (receivedBit << baudBitPosition);
-        if(receivedBit == 1) {
-            parityBit = (1 + parityBit)%2;
-            //delChar++;
-        }
-        
-        baudBitPosition++;
-        if (baudBitPosition >= 8) { // 8 bits de dados lidos (caracter). Vai para paridade
-            state = PARITY_STATE;
-        }
-        Serial.print(receivedBit);
-        
-        delay(clockCycle);
-    }
-
-    if (state == PARITY_STATE) { // verifica a paridade
-
-        receivedBit = (analogRead(A0) > 900) ? 1 : 0;
-             
-        if (parityBit != receivedBit) {
-            Serial.print("[*ERROR*]");
+            Serial.print(charBits);
+            charBits = 0;
+            delay(clockCycle*0.5);
+            Serial.print("  ");
+            millis_out = millis();
+            Serial.println(millis_out - millis_in);
         } else {
-            Serial.println(charBits);
+            delay(clockCycle);
         }
-        //delay(250);
+    }*/
+
+    /*if(ldrValue < 900) {
+        millis_in = millis();
+        delay(clockCycle*0.5);
+        Serial.print('S');
+        delay(clockCycle);
+        for (int i=0; i<8; i++){
+            bitReceived = analogRead(LDR) > 900 ? 1 : 0;
+            Serial.print(bitReceived);
+            charBits = charBits | (bitReceived << i);
+            if(i!=7) delay(clockCycle);
+            else delay(clockCycle*0.5);
+        }
+        Serial.print(charBits);
         charBits = 0;
-        baudBitPosition = 0; 
-        state = COMM_STARTED_STATE;
+        Serial.print("  ");
+        millis_out = millis();
+        Serial.println(millis_out - millis_in);
+        //delay(clockCycle*0.5);
+    }*/
+    /*inloop = millis();
+    betweenloop += (inloop - outloop);
+    //Serial.println("");
+    if(ldrValue < 900) {
+        //Serial.println(betweenloop);
+        betweenloop=0;
+        if(start==0){
+           millis_previous = millis();
+           start = 1;
+        }
+        millis_in = millis();
+        millis_current = millis();
+        if (millis_current - millis_previous >= clockCycle*1.5){
+            millis_previous = millis_current;
+            Serial.print('S');
+            for (int i=0; i<8; i++){
+                bitReceived = analogRead(LDR) > 900 ? 1 : 0;
+                Serial.print(bitReceived);
+                charBits = charBits | (bitReceived << i);
+                if(i!=7) {
+                    while (millis() - millis_previous < clockCycle){
+                        
+                    }millis_previous = millis();
+                }
+                else {
+                    while (millis() - millis_previous < clockCycle*0.5){
+                        
+                    }millis_previous = millis();
+                }
+            }
+            Serial.print(charBits);
+            charBits = 0;
+            Serial.print("  ");
+            millis_out = millis();
+            Serial.println(millis_out - millis_in);
+            //delay(clockCycle*0.5);
+        }
+    outloop = millis();
+    }*/
+    if(ldrValue < 900) {
+        while (millis() - millis_previous < clockCycle/2){
+            //
+        }millis_previous = millis();
+        Serial.print('S');
+        while (millis() - millis_previous < clockCycle){
+            //
+        }millis_previous = millis();
+        for (int i=0; i<8; i++){
+            bitReceived = analogRead(LDR) > 900 ? 1 : 0;
+            Serial.print(bitReceived);
+            charBits = charBits | (bitReceived << i);
+            if(i!=7) {
+                while (millis() - millis_previous < clockCycle){
+                      //  
+                }millis_previous = millis();
+            } else { // ultimo bit lido
+                while (millis() - millis_previous < 250){
+                    //
+                }millis_previous = millis();
+            }
+        }
     }
 }
