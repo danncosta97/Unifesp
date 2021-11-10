@@ -2,7 +2,7 @@
 //--------------------------
 // Port direct D2 -> PORTD[2] 00000$00
 
-#define CLK_PERIOD 3 // Precisa ser igual ao do receptor
+#define CLK_PERIOD 2500 // Precisa ser igual ao do receptor (em us)
 
 #define START_STATE 0 // Estado de inicializacao, tempo para iniciar o receptor
 #define START_BIT_STATE 1 // Estado de envio do Start Bit
@@ -19,7 +19,7 @@ int state;
 
 int baudDataBitIndex;
 
-unsigned long millisPrevious;
+unsigned long microsPrevious;
 
 void setup() {
     // Habilita o Serial
@@ -39,8 +39,8 @@ void setup() {
     state = START_STATE;
     baudDataBitIndex = 0;
 
-    millisPrevious = 0;
-    millisPrevious = millis();
+    microsPrevious = 0;
+    microsPrevious = micros();
 }
 
 void loop() {
@@ -48,22 +48,22 @@ void loop() {
 
     // Matém o LED aceso por 5s.
     if(state == START_STATE) {
-        if((millis() - millisPrevious) >= 5000) {
+        if((micros() - microsPrevious) >= 5000000) {
             state = START_BIT_STATE;
             
-            millisPrevious = millis();
+            microsPrevious = micros();
         }
     }
 
     // Faz o envio do Start Bit (nível baixo).
     if(state == START_BIT_STATE) {
-        if((millis() - millisPrevious) >= CLK_PERIOD) {
+        if((micros() - microsPrevious) >= CLK_PERIOD) {
             PORTD = B00000000;
             state = DATA_BITS_STATE;
             
             if(DEBUG) Serial.print("<S");
             
-            millisPrevious = millis();
+            microsPrevious = micros();
         }
     }
 
@@ -71,7 +71,7 @@ void loop() {
     // Ao enviar 8 bits (baudDataBitIndex==8), vai para o Stop Bit
     // e incrementa para o próximo caracter da string (stringLengthSent++).
     if(state == DATA_BITS_STATE) {
-        if((millis() - millisPrevious) >= CLK_PERIOD) {
+        if((micros() - microsPrevious) >= CLK_PERIOD) {
             // Bits de dados (LSB para MSB)
             if((string[stringLengthSent] & (0x01 << baudDataBitIndex)) != 0) {
                 PORTD = B00000100;
@@ -89,7 +89,7 @@ void loop() {
                 stringLengthSent++;
             }
             
-            millisPrevious = millis();
+            microsPrevious = micros();
         }
     }
 
@@ -97,8 +97,9 @@ void loop() {
     // Se a qtd de char enviados for maior ou igual ao tamanho da frase
     // Volta para estado de inicialização do sistema.
     if(state == STOP_BIT_STATE) {
-        if((millis() - millisPrevious) >= CLK_PERIOD) {
+        if((micros() - microsPrevious) >= CLK_PERIOD) {
             PORTD = B00000100;
+            
             state = START_BIT_STATE;
             
             if(DEBUG) Serial.println("S>");
@@ -108,7 +109,7 @@ void loop() {
                     state = START_STATE;
             }
             
-            millisPrevious = millis();
+            microsPrevious = micros();
         }
     }
 }

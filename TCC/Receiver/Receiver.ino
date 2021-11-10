@@ -8,7 +8,8 @@
 
 #define TEMT6000 A1 // A1
 
-#define CLK_PERIOD 3
+#define CLK_PERIOD 2500 // (em us)
+#define CLK_PERIOD_HALF 1000 // (em us)
 
 #define IDLE_STATE 0 // Estado de aguardo do proximo Start Bit
 #define START_BIT_STATE 1 // Estado de envio do Start Bit
@@ -32,7 +33,7 @@ char *stringReceivedBuffer = calloc(100, sizeof(char));
 // Tempo para printar o buffer
 // Após 1s com recebimento de dados HIGH (LED aceso), assume-se fim de string
 // já que o sistema permanece 5s ocioso entre envios.
-int bufferOutputTimeCounter;
+long bufferOutputTimeCounter;
 // Bloqueia liberacao do buffer
 int bufferOutputLocker;
 
@@ -45,7 +46,7 @@ int state; // Estado atual do sistema
 
 int baudDataBitIndex; // Indice do bit do char em recepcao
 
-long millisPrevious = 0;
+long microsPrevious = 0;
 
 void setup() {
     //Prescale setter (16 bit instead of 128)
@@ -66,7 +67,7 @@ void setup() {
 
     baudDataBitIndex = 0;
     
-    millisPrevious = 0;
+    microsPrevious = 0;
 
     // Sem saída do buffer inicial vazio
     bufferOutputTimeCounter = 0;
@@ -78,10 +79,10 @@ void loop() {
     if(state == IDLE_STATE) {
         if (analogRead(TEMT6000) < 500) {
             state = START_BIT_STATE;
-            millisPrevious = millis();
+            microsPrevious = micros();
         }
         // Momento entre transmissões completas, momento de liberação do buffer
-        if (millis() - bufferOutputTimeCounter > 1000 && bufferOutputLocker==0){
+        if ( ((micros() - bufferOutputTimeCounter) > 2000000) && bufferOutputLocker==0){
             Serial.println(stringReceivedBuffer);
             // Assegura uma única liberação de buffer
             bufferOutputLocker = 1;
@@ -90,15 +91,15 @@ void loop() {
 
     if(state == START_BIT_STATE) {
         //delay para amostragem ótima
-        if((millis() - millisPrevious) >= CLK_PERIOD*0.5) {
+        if((micros() - microsPrevious) >= CLK_PERIOD_HALF) {
             //Serial.print("<S");
             state = DATA_BITS_STATE;
-            millisPrevious = millis();
+            microsPrevious = micros();
         }
     }
 
     if(state == DATA_BITS_STATE) {
-        if((millis() - millisPrevious) >= CLK_PERIOD) {
+        if((micros() - microsPrevious) >= CLK_PERIOD) {
             bitReceived = analogRead(TEMT6000) > 500 ? 1 : 0;
             //Serial.print(bitReceived);
             charBits = charBits | (bitReceived << baudDataBitIndex);
@@ -108,12 +109,12 @@ void loop() {
                 baudDataBitIndex = 0;
                 state = STOP_BIT_STATE;
             }
-            millisPrevious = millis();
+            microsPrevious = micros();
         }
     }
 
     if(state == STOP_BIT_STATE) {
-        if((millis() - millisPrevious) >= CLK_PERIOD) {
+        if((micros() - microsPrevious) >= CLK_PERIOD) {
             //Serial.print("S>");
             //Serial.print(charBits);
             stringReceivedBuffer[bitsReceivedAmount] = charBits;
@@ -121,14 +122,14 @@ void loop() {
 
             // temporario para 100 bytes apenas sem '\0'
             if(bitsReceivedAmount>=100){
-                bufferOutputTimeCounter = millis();
+                bufferOutputTimeCounter = micros();
                 bitsReceivedAmount=0;
                 bufferOutputLocker = 0;
             }
             
             charBits = 0;
             state = IDLE_STATE;
-            millisPrevious = millis();
+            microsPrevious = micros();
             //bufferOutputTimeCounter = millis();
         }
     }
