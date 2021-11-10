@@ -2,7 +2,7 @@
 //--------------------------
 // Port direct D2 -> PORTD[2] 00000$00
 
-#define CLK_PERIOD 10 // Precisa ser igual ao do receptor
+#define CLK_PERIOD 3 // Precisa ser igual ao do receptor
 
 #define START_STATE 0 // Estado de inicializacao, tempo para iniciar o receptor
 #define START_BIT_STATE 1 // Estado de envio do Start Bit
@@ -11,7 +11,7 @@
 
 #define DEBUG 1 // Habilita e desabilita prints no Serial
 
-char* string = "This is a test transmission";
+char* string = "Uma frase simples para ser usada com teste de comunicacao por luz visivel de 100 caracteres no total";
 int stringLength;
 int stringLengthSent;
 
