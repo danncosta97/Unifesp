@@ -2,7 +2,7 @@
 //--------------------------
 // Port direct D2 -> PORTD[2] 00000$00
 
-#define CLK_PERIOD 2500 // Precisa ser igual ao do receptor (em us)
+#define CLK_PERIOD 1400 // Precisa ser igual ao do receptor (em us)
 
 #define START_STATE 0 // Estado de inicializacao, tempo para iniciar o receptor
 #define START_BIT_STATE 1 // Estado de envio do Start Bit
